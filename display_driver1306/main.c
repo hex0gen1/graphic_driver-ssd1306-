@@ -6,7 +6,7 @@
 uint8_t framebuffer[1024];
 
 void twi_init(void) {
-  TWBR = 152; //  72/162
+  TWBR = 152; //  72/152
   TWSR &= ~((1 << TWPS0) | (1 << TWPS1));
   TWCR = (1 << TWEN);
 };
@@ -57,25 +57,25 @@ void ssd1306_init(void) {
 
   ssd1306_command(0xAE); // Display OFF
   ssd1306_command(0xD5); // Set Display Clock Divide Ratio/Oscillator Frequency
-  ssd1306_command(0x80); // Значение по умолчанию
+  ssd1306_command(0x80); // Default value
   ssd1306_command(0xA8); // Set Multiplex Ratio
-  ssd1306_command(0x3F); // 1/64 duty (для 64px высоты)
+  ssd1306_command(0x3F); // 1/64 duty (for 64px height)
   ssd1306_command(0xD3); // Set Display Offset
-  ssd1306_command(0x00); // Нет смещения
+  ssd1306_command(0x00); // No offset
   ssd1306_command(0x40); // Set Start Line (0x40 + 0)
-  ssd1306_command(0x8D); // Charge Pump Setting (КРИТИЧНО ВАЖНО!)
-  ssd1306_command(0x14); // Включить зарядовый насос (иначе экран будет черным)
+  ssd1306_command(0x8D); // Charge Pump Setting 
+  ssd1306_command(0x14); // Charge pump enabling
   ssd1306_command(0x20); // Set Memory Addressing Mode
-  ssd1306_command(0x00); // Horizontal Addressing Mode (удобно для буфера)
+  ssd1306_command(0x00); // Horizontal Addressing Mode 
   ssd1306_command(
-      0xA1); // Segment Re-map (A0 или A1 в зависимости от ориентации)
+      0xA1); // Segment Re-map (A0 or A1 in terms of facing)
   ssd1306_command(0xC8); // COM Output Scan Direction
   ssd1306_command(0xDA); // Set COM Pins Hardware Configuration
   ssd1306_command(0x12);
   ssd1306_command(0x81); // Set Contrast Control
-  ssd1306_command(0xCF); // Яркость
+  ssd1306_command(0xCF); // Brightness
   ssd1306_command(0xA4); // Disable Entire Display On
-  ssd1306_command(0xA6); // Normal Display (не инвертированный)
+  ssd1306_command(0xA6); // Normal Display 
   ssd1306_command(0xAF); // Display ON
 }
 
