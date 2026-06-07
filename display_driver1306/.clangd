@@ -1,0 +1,6 @@
+CompileFlags:
+  Add:
+    - "--target=avr"          # Говорим clang, что целевая архитектура AVR
+    - "-mmcu=atmega328p"      # Нужно для avr-libc, чтобы он выбрал правильные макросы
+    - "-I/usr/lib/avr/include" # Путь к заголовкам (для Arch Linux: /usr/avr/include)
+    - "-I/usr/avr/include"    
